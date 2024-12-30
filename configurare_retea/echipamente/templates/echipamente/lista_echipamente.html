@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista echipamentelor</title>
+    <style>
+        /* Resetează stilurile implicite */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Stilizare pentru corpul paginii */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        /* Stilizare pentru tabel */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Stilizare pentru checkboxes */
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin: 0;
+        }
+
+        /* Stilizare pentru dropdown */
+        select {
+            padding: 8px;
+            margin-top: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        /* Stilizare pentru butoane */
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .btn-primary {
+            background-color: #008CBA;
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background-color: #006f85;
+        }
+
+        /* Stilizare pentru formular */
+        form {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive pentru dispozitive mici */
+        @media (max-width: 768px) {
+            table, input[type="submit"], .btn-primary, select {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Lista echipamentelor</h2>
+
+    <!-- Formular pentru selecția unui echipament -->
+    <form method="get" action="{% url 'actiune_echipament' %}">
+        <table>
+            <thead>
+                <tr>
+                    <th>Selecție</th>
+                    <th>NUME</th>
+                    <th>IP</th>
+                    <th>TIP</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for echipament in echipamente %}
+                    <tr>
+                        <td><input type="checkbox" name="echipament_id" value="{{ echipament.id }}"></td>
+                        <td>{{ echipament.nume }}</td>
+                        <td>{{ echipament.ip }}</td>
+                        <td>{{ echipament.tip }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Dropdown pentru acțiuni -->
+        <label for="actiune">Alegeți o acțiune:</label>
+        <select name="actiune" id="actiune">
+            <option value="configurare_interfete">Configurare interfețe</option>
+            <option value="vizualizare_interfete">Vizualizare interfețe</option>
+            <option value="configureaza_echipament">Introducere comandă manuală</option>
+            <option value="stergere_echipament">Ștergere echipament</option>
+        </select>
+
+        <br><br>
+        <input type="submit" value="Execută acțiunea">
+        <a href="{% url 'adauga_echipament' %}" class="btn-primary">Adaugă echipament</a>
+    </form>
+</body>
+</html>

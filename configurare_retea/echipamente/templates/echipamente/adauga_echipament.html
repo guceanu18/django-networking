@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaugă echipament</title>
+    <style>
+        /* Resetează stilurile implicite */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Stilizare pentru corpul paginii */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        /* Stilizare pentru formular */
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form p {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        form input[type="text"], form input[type="number"], form input[type="email"], form input[type="password"], form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        /* Butonul de submit */
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Link pentru navigare */
+        .btn-primary {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+
+        /* Responsive pentru dispozitive mici */
+        @media (max-width: 768px) {
+            form {
+                width: 90%;
+            }
+
+            button, .btn-primary {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>Adaugă echipament</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Renderizare câmpuri individuale -->
+        <p>
+            <label for="{{ form.tip.id_for_label }}">{{ form.tip.label }}</label><br>
+            {{ form.tip }}
+        </p>
+
+        <p>
+            <label for="{{ form.nume.id_for_label }}">{{ form.nume.label }}</label><br>
+            {{ form.nume }}
+        </p>
+
+        <p>
+            <label for="{{ form.ip.id_for_label }}">{{ form.ip.label }}</label><br>
+            {{ form.ip }}
+        </p>
+
+        <p>
+            <label for="{{ form.utilizator.id_for_label }}">{{ form.utilizator.label }}</label><br>
+            {{ form.utilizator }}
+        </p>
+
+        <p>
+            <label for="{{ form.parola.id_for_label }}">{{ form.parola.label }}</label><br>
+            {{ form.parola }}
+        </p>
+
+        <button type="submit">Adaugă</button>
+        <a href="{% url 'lista_echipamente' %}" class="btn-primary">Listă echipamente</a>
+    </form>
+
+</body>
+</html>

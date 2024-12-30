@@ -1,0 +1,19 @@
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[project]
+dependencies = [
+  "ansible",
+  "django",
+  "paramiko",
+]
+authors = [
+  {name = "Another person"},
+  {email = "different.person@example.com"},
+]
+maintainers = [
+  {name = "Brett Cannon", email = "brett@example.com"}
+]
+description = "Lovely Spam! Wonderful Spam!"
+readme = "README.md"
